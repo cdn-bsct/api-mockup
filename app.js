@@ -35,7 +35,7 @@ async function itemQuery(location, sku) {
 }
 
 async function changePrice(data) {
-  console.log(data.listPrice);
+  console.log(data.recommendedPrice);
 
   let el = document.getElementsByClassName("zyTvb");
   el[0].innerHTML = `$${data.recommendedPrice}`;
