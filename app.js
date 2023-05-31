@@ -38,7 +38,7 @@ async function changePrice(data) {
   console.log(data.listPrice);
 
   let el = document.getElementsByClassName("zyTvb");
-  el[0].innerHTML = `$${data.listPrice}`;
+  el[0].innerHTML = `$${data.recommendedPrice}`;
 }
 
 
