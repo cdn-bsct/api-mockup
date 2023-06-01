@@ -1,12 +1,12 @@
 let queryData = null;
-let fetch_url = "https://pricing-engine-staging-api.petc.com/graphql"
+let fetch_url = 'https://k0wbbj0og7.execute-api.us-east-1.amazonaws.com/graphql'
 // GQL Query Elements
 let locationId = 6989;
 let skuId = 2471105;
 
 async function itemQuery(location, sku) {
   await fetch(fetch_url, {
-    method: "POST",
+    method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
@@ -36,13 +36,18 @@ async function itemQuery(location, sku) {
 
 async function changePrice(data) {
   console.log(data.recommendedPrice);
-
   let el = document.getElementsByClassName("zyTvb");
   el[0].innerHTML = `$${data.recommendedPrice}`;
 }
 
+async function updatePrice() {
+  await itemQuery(locationId, skuId);
+  await changePrice(queryData)
+}
+
+updatePrice();
+
 
 setInterval(async function () {
-  await itemQuery(locationId, skuId);
-  await changePrice(queryData);
+  updatePrice()
 }, 30000);
